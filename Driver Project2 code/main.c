@@ -70,6 +70,11 @@ int main(void) {
         // before changing (at half its full cycle), will check input again
         // and continue itself if input is the same
         
+        //Actually, to increase responsivness to change of input,
+        //  while the stalling for the blinking outputs,
+        //  just have it repeatedly check for change of input
+        //This will take away major problem of waiting at most 3 
+        // seconds before response
         input = choose_output_func(input);
     }
     return 0;
