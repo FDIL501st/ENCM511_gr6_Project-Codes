@@ -47,50 +47,101 @@ void LED_off() { LATBbits.LATB8 = 0; }
 
 void LED_on() { LATBbits.LATB8 = 1; }
 
-uint8_t PB1_pressed(uint8_t input)
+void PB1_pressed(uint8_t input)
 {
+    uint8_t newInput = 0;
+    uint32_t counter = 200000;
+    
     LED_on();
-    /* Somehow stall for ~1s. */
+    /* stall for ~1s by repeatedly checking for change in input. */
+    while (counter != 0)
+    {
+        newInput = read_input();
     
-    uint8_t newInput = read_input();
-    
-    if (newInput != input)
-        return;
+        if (newInput != input)
+            return;
+        
+        counter--;
+    }
     
     LED_off();
-    /* Somehow stall for ~1s. */
+    /* stall for ~1s by repeatedly checking for change in input. */
+    counter = 200000;   // Reset counter
+    while (counter != 0)
+    {
+        newInput = read_input();
+    
+        if (newInput != input)
+            return;
+        
+        counter--;
+    }
     
     return;
 }
 
-uint8_t PB2_pressed(uint8_t input)
+void PB2_pressed(uint8_t input)
 {
+    uint8_t newInput = 0;
+    uint32_t counter = 400000;
+    
     LED_on();
-    /* Somehow stall for ~2s. */
+    /* stall for ~2s by repeatedly checking for change in input. */
+    while (counter != 0)
+    {
+        newInput = read_input();
     
-    uint8_t newInput = read_input();
-    
-    if (newInput != input)
-        return;
+        if (newInput != input)
+            return;
+        
+        counter--;
+    }
     
     LED_off();
-    /* Somehow stall for ~2s. */
+    /* stall for ~2s by repeatedly checking for change in input. */
+    counter = 400000;   // Reset counter
+    while (counter != 0)
+    {
+        newInput = read_input();
+    
+        if (newInput != input)
+            return;
+        
+        counter--;
+    }
     
     return;
 }
 
 void PB3_pressed(uint8_t input)
 {
+    uint8_t newInput = 0;
+    uint32_t counter = 600000;
+    
     LED_on();
-    /* Somehow stall for ~3s. */
+    /* stall for ~3s by repeatedly checking for change in input. */
+    while (counter != 0)
+    {
+        newInput = read_input();
     
-    uint8_t newInput = read_input();
-    
-    if (newInput != input)
-        return;
+        if (newInput != input)
+            return;
+        
+        counter--;
+    }
     
     LED_off();
-    /* Somehow stall for ~3s. */
+    /* stall for ~3s by repeatedly checking for change in input. */
+    counter = 600000;   // Reset counter
+    while (counter != 0)
+    {
+        newInput = read_input();
+    
+        if (newInput != input)
+            return;
+        
+        counter--;
+    }
     
     return;
 }
@@ -100,15 +151,15 @@ uint8_t choose_output_func(uint8_t input)
     switch (input)
     {
         case 011:
-            PB1_pressed();
+            PB1_pressed(input);
             break;
         
         case 101:
-            PB2_pressed();
+            PB2_pressed(input);
             break;
             
         case 110:
-            PB3_pressed();
+            PB3_pressed(input);
             break;
             
         case 111:

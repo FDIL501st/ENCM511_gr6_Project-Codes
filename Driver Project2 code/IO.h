@@ -39,23 +39,23 @@ void LED_on();
 void PB1_pressed(uint8_t input);
 // REQUIRES: The current input (3 digit binary pattern)
 // PROMISES: Have LED on for ~1s and then off ~1s.
-//  In between before turning the LED off, will check input again.
-//  If both the newInput and input provided are the same,
-//      LED will be turned off for ~1s.
+//  During the 1s that the LED is on or off for,
+//      repeatedly checks for change of input on breadboard.
+//  If detected, will stop function.
 
 void PB2_pressed(uint8_t input);
 // REQUIRES: The current input (3 digit binary pattern)
 // PROMISES: Have LED on for ~2s and then off ~2s.
-//  In between before turning the LED off, will check input again.
-//  If both the newInput and input provided are the same,
-//      LED will be turned off for ~2s.
+//  During the 1s that the LED is on or off for,
+//      repeatedly checks for change of input on breadboard.
+//  If detected, will stop function.
 
 void PB3_pressed(uint8_t input);
 // REQUIRES: The current input (3 digit binary pattern)
 // PROMISES: Have LED on for ~3s and then off ~3s.
-//  In between before turning the LED off, will check input again.
-//  If both the newInput and input provided are the same,
-//      LED will be turned off for ~3s.
+//  During the 1s that the LED is on or off for,
+//      repeatedly checks for change of input on breadboard.
+//  If detected, will stop function.
 
 uint8_t choose_output_func(uint8_t input);
 // REQUIRES: The current input (3 digit binary pattern)

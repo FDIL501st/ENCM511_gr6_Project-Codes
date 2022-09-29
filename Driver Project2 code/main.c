@@ -51,8 +51,6 @@
 #include "xc.h"
 #include "IO.h"
 
-uint8_t prevInput = 0b111;   //Initialize with starting value of input 
-                                // assuming no pb pushed when starting
 uint8_t input;
 
 int main(void) {
@@ -70,7 +68,7 @@ int main(void) {
         // before changing (at half its full cycle), will check input again
         // and continue itself if input is the same
         
-        //Actually, to increase responsivness to change of input,
+        //Actually, to increase responsiveness to change of input,
         //  while the stalling for the blinking outputs,
         //  just have it repeatedly check for change of input
         //This will take away major problem of waiting at most 3 
