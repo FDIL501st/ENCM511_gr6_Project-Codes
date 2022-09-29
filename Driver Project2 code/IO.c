@@ -50,7 +50,7 @@ void LED_on() { LATBbits.LATB8 = 1; }
 void PB1_pressed(uint8_t input)
 {
     uint8_t newInput = 0;
-    uint32_t counter = 200000;
+    uint32_t counter = 120000;
     
     LED_on();
     /* stall for ~1s by repeatedly checking for change in input. */
@@ -66,7 +66,7 @@ void PB1_pressed(uint8_t input)
     
     LED_off();
     /* stall for ~1s by repeatedly checking for change in input. */
-    counter = 200000;   // Reset counter
+    counter = 120000;   // Reset counter
     while (counter != 0)
     {
         newInput = read_input();
@@ -83,7 +83,7 @@ void PB1_pressed(uint8_t input)
 void PB2_pressed(uint8_t input)
 {
     uint8_t newInput = 0;
-    uint32_t counter = 400000;
+    uint32_t counter = 240000;
     
     LED_on();
     /* stall for ~2s by repeatedly checking for change in input. */
@@ -99,7 +99,7 @@ void PB2_pressed(uint8_t input)
     
     LED_off();
     /* stall for ~2s by repeatedly checking for change in input. */
-    counter = 400000;   // Reset counter
+    counter = 240000;   // Reset counter
     while (counter != 0)
     {
         newInput = read_input();
@@ -116,7 +116,7 @@ void PB2_pressed(uint8_t input)
 void PB3_pressed(uint8_t input)
 {
     uint8_t newInput = 0;
-    uint32_t counter = 600000;
+    uint32_t counter = 360000;
     
     LED_on();
     /* stall for ~3s by repeatedly checking for change in input. */
@@ -132,7 +132,7 @@ void PB3_pressed(uint8_t input)
     
     LED_off();
     /* stall for ~3s by repeatedly checking for change in input. */
-    counter = 600000;   // Reset counter
+    counter = 360000;   // Reset counter
     while (counter != 0)
     {
         newInput = read_input();
@@ -150,19 +150,19 @@ uint8_t choose_output_func(uint8_t input)
 {
     switch (input)
     {
-        case 011:
+        case 0b011:
             PB1_pressed(input);
             break;
         
-        case 101:
+        case 0b101:
             PB2_pressed(input);
             break;
             
-        case 110:
+        case 0b110:
             PB3_pressed(input);
             break;
             
-        case 111:
+        case 0b111:
             LED_off();
             break;
         
