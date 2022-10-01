@@ -22,7 +22,7 @@ void NewClk (unsigned int clkval)
 		COSCNOSC = 0x55;
 	}
 	
-	// Switch clock to 500 kHz
+	// Switch clock to 31 kHz
 	SRbits.IPL = 7; //disable interrupts
 	CLKDIVbits.RCDIV = 0; // CLK division = 0
 	__builtin_write_OSCCONH(COSCNOSC);
