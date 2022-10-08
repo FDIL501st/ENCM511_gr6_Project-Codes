@@ -11,6 +11,8 @@
 
 void IOinit()   //Works as intended
 {
+    AD1PCFG = 0xFFFF; // disable ADC on RA2
+    
     // Make ports RA2, RB4 and RA4 input
     TRISAbits.TRISA2 = 1;
     TRISBbits.TRISB4 = 1;
