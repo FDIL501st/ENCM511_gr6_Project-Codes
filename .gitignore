@@ -1,0 +1,6 @@
+# Ignore all MPLab generated folders
+.generated_files/
+build/
+debug/
+nbproject/
+Makefile
