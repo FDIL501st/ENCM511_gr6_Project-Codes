@@ -54,10 +54,11 @@ void LED_on() { LATBbits.LATB8 = 1; }
 
 void PB1_pressed(uint8_t input)
 {
-    delay_ms(10000);
+    LED_on();
+    delay_ms(1000);
     Idle();
     LED_off();
-    delay_ms(10000);
+    delay_ms(1000);
     Idle();
     return;
 }
@@ -65,10 +66,10 @@ void PB1_pressed(uint8_t input)
 void PB2_pressed(uint8_t input)
 {
     LED_on();
-    delay_ms(20000);
+    delay_ms(2000);
     Idle();
     LED_off();
-    delay_ms(20000);
+    delay_ms(2000);
     Idle();
     
     return;
@@ -78,10 +79,10 @@ void PB3_pressed(uint8_t input)
 {
     
     LED_on();
-    delay_ms(30000);
+    delay_ms(3000);
     Idle();
     LED_off();
-    delay_ms(30000);
+    delay_ms(3000);
     Idle();
     
     

@@ -59,16 +59,16 @@ void delay_ms(uint16_t time_ms)
 	//Priority level 7
 	IPC1bits.T2IP2 = 1;
 	IPC1bits.T2IP1 = 1;
-	IPC1bits.T2IP0 = 1;
+	IPC1bits.T2IP0 = 1; // T2 priority lvl highest so it won't get interrupted
 	
-	IEC0bits.T2IE = 1;
+	IEC0bits.T2IE = 1;  //enable T2 interrupts
 	
-	IFS0bits.T2IF = 0;
+	IFS0bits.T2IF = 0;  //clear T2 interrupt flag
 	
 	//PR2
 	
 	PR2 = time_ms/(1000 * 0.0000625 * 1); 
-    // time_ms = required delay in ms, 0.0000625 = 2/flk, 1 = prescaler
+    // time_ms = required delay in ms, 0.0000625 = 2/32kHz, 1 = prescaler
     // With 32kHz clock, will result in a whole number PR2 that can fit
     // 32 bit clock but not 16 bit clock for 3s. 1s and 2s also fit.
 
