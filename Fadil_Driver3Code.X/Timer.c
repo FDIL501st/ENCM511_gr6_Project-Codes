@@ -35,12 +35,12 @@ void NewClk (unsigned int clkval)
 	SRbits.IPL = 0; //enable interrupts
 }
 
-void _attribute_((interrupt, no_auto_psv))_T2Interrupt(void)
+void __attribute__((interrupt, no_auto_psv)) _T2Interrupt(void)
 {
 	IFS0bits.T2IF = 0; //Clear timer 2 interrupt flag
-	T2CONbits.TON = 0;
-	TMR2 = 0;
-	// TMR2flag = 1; // global variable created by user
+	T2CONbits.TON = 0; // Stops T2 clock
+	TMR2 = 0;   // reset T2 counter to 0
+    NewClk(8);  // return clock to original 8MHz
 }
 
 void delay_ms(uint16_t time_ms)
@@ -61,7 +61,7 @@ void delay_ms(uint16_t time_ms)
 	IPC1bits.T2IP1 = 1;
 	IPC1bits.T2IP0 = 1;
 	
-	IEC0bits.T2IE = 0;
+	IEC0bits.T2IE = 1;
 	
 	IFS0bits.T2IF = 0;
 	
@@ -69,6 +69,8 @@ void delay_ms(uint16_t time_ms)
 	
 	PR2 = time_ms/(1000 * 0.0000625 * 1); 
     // time_ms = required delay in ms, 0.0000625 = 2/flk, 1 = prescaler
+    // With 32kHz clock, will result in a whole number PR2 that can fit
+    // 32 bit clock but not 16 bit clock for 3s. 1s and 2s also fit.
 
     return;
 }

@@ -9,6 +9,9 @@
 #include "xc.h"
 #include "IO.h"
 
+#define Idle() {__asm__ volatile ("pwrsav #1");}
+
+
 void IOinit()   //Works as intended
 {
     AD1PCFG = 0xFFFF; // disable ADC on RA2
@@ -52,10 +55,10 @@ void LED_on() { LATBbits.LATB8 = 1; }
 void PB1_pressed(uint8_t input)
 {
     delay_ms(10000);
-    // put into idle
+    Idle();
     LED_off();
     delay_ms(10000);
-    // put into idle
+    Idle();
     return;
 }
 
@@ -63,10 +66,10 @@ void PB2_pressed(uint8_t input)
 {
     LED_on();
     delay_ms(20000);
-    // put into idle
+    Idle();
     LED_off();
     delay_ms(20000);
-    // put into idle
+    Idle();
     
     return;
 }
@@ -76,9 +79,10 @@ void PB3_pressed(uint8_t input)
     
     LED_on();
     delay_ms(30000);
-    // Add idle
+    Idle();
     LED_off();
-    // put into idle
+    delay_ms(30000);
+    Idle();
     
     
     return;

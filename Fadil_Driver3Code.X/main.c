@@ -50,11 +50,13 @@
 
 #include "xc.h"
 #include "IO.h"
+#include "timer.h"
 
 uint8_t input;
 
 int main(void) {
     IOinit();
+    
     // Initial reading of input to get started
     input = read_input();
     while(1)

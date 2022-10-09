@@ -14,7 +14,8 @@
 
 void NewClk (unsigned int clkval);
 
-void _attribute_((interrupt, no_auto_psv))_T2Interrupt(void);
+// Timer 2 interrupt subroutine
+void __attribute__((interrupt, no_auto_psv)) _T2Interrupt(void);
 
 void delay_ms(uint16_t time_ms);
 
