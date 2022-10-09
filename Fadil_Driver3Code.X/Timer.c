@@ -3,6 +3,7 @@
 //clkval 8 for 8MHz;
 //clkval = 500 for 500kHz:
 //clkval = 32 for 32kHz;
+uint8_t T2flag;
 
 void NewClk (unsigned int clkval)
 {
@@ -40,7 +41,6 @@ void __attribute__((interrupt, no_auto_psv)) _T2Interrupt(void)
 	IFS0bits.T2IF = 0; //Clear timer 2 interrupt flag
 	T2CONbits.TON = 0; // Stops T2 clock
 	TMR2 = 0;   // reset T2 counter to 0
-    NewClk(8);  // return clock to original 8MHz
 }
 
 void delay_ms(uint16_t time_ms)

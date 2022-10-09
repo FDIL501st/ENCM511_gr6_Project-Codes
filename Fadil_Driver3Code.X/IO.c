@@ -11,7 +11,6 @@
 
 #define Idle() {__asm__ volatile ("pwrsav #1");}
 
-
 void IOinit()   //Works as intended
 {
     AD1PCFG = 0xFFFF; // disable ADC on RA2
@@ -57,9 +56,11 @@ void PB1_pressed(uint8_t input)
     LED_on();
     delay_ms(1000);
     Idle();
+    NewClk(8); //Revert clock back to 8MHz
     LED_off();
     delay_ms(1000);
     Idle();
+    NewClk(8); //Revert clock back to 8MHz
     return;
 }
 
@@ -68,10 +69,11 @@ void PB2_pressed(uint8_t input)
     LED_on();
     delay_ms(2000);
     Idle();
+    NewClk(8); //Revert clock back to 8MHz
     LED_off();
     delay_ms(2000);
     Idle();
-    
+    NewClk(8); //Revert clock back to 8MHz
     return;
 }
 
@@ -81,11 +83,11 @@ void PB3_pressed(uint8_t input)
     LED_on();
     delay_ms(3000);
     Idle();
+    NewClk(8); //Revert clock back to 8MHz
     LED_off();
     delay_ms(3000);
     Idle();
-    
-    
+    NewClk(8); //Revert clock back to 8MHz
     return;
 }
 
