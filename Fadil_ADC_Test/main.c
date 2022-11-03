@@ -1,11 +1,3 @@
-/*
- * File:   main.c
- * Author: fdilf, riley
- *
- * Created on September 28, 2022, 12:59 PM
- * - Updated on October 20th, 2022. 
- */
-
 //// CONFIGURATION BITS - PRE-PROCESSOR DIRECTIVES ////
 
 // Code protection 
