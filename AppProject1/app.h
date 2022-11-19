@@ -9,7 +9,6 @@
 
 extern uint8_t inputChangeFlag; // Extern global var.
 
-
 void app1();
 // PROMISES:
 // Read 3 bit input from the 3 input ports, RA2, RA4, RB4.

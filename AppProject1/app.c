@@ -39,7 +39,7 @@ void app1()
 					Disp2String(time_minutes + ":" + time_seconds);
 					break;
 
-				case 0b0010 // adjusting the time of seconds
+				case 0b0010: // adjusting the time of seconds
 					while(time_seconds<59)
 					{
 						time_seconds++;
@@ -49,7 +49,7 @@ void app1()
 					break;
 
             case 0b0100: // if a long press of 3s is occured, reset the timer and return, else start the timer counting 
-				if(longpress(3000) == 1)
+				if(longPress(3000) == 1)
 				{
 					time_minutes = 00;
 					time_seconds = 00;
@@ -60,7 +60,7 @@ void app1()
 					while(time_seconds > 0)
 					{
 						time_seconds--;
-						delay_ms(1000)
+						delay_ms(1000);
 						Disp2String(time_minutes + ":" + time_seconds);
 						LED_SWITCH;
 					}
@@ -68,7 +68,7 @@ void app1()
 					time_seconds = 59;
 				}
 				LED_ON;
-				delay_ms(3000)
+				delay_ms(3000);
                 break;
                    
             case 0b0000:
