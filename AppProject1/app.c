@@ -55,7 +55,7 @@ void app1()
                         time_minutes++;
 
                     // display current time option
-                    Disp2String(time_minutes + ":" + time_seconds);
+                    Disp2String(time_minutes + ":" + time_seconds + '\n');
 
                     delay_ms(ONE_SEC); //1s delay between change of minute choice
                     
@@ -63,9 +63,7 @@ void app1()
                     //  need to get out of loop and stop timer
                     if (inputChangeFlag)
                     {
-                        T2CONbits.TON = 0; // Stops T2 clock.
-                        T2flag = 10; //Clear T2flag 
-                        inputChangeFlag = 0;    //clear inputChangeflag
+                        stopTimerAndClearFlags();
                         break;
                     }
                 }
@@ -88,7 +86,7 @@ void app1()
                         time_seconds++;
 
                     // display current time option
-                    Disp2String(time_minutes + ":" + time_seconds);
+                    Disp2String(time_minutes + ":" + time_seconds + '\n');
 
                     delay_ms(ONE_SEC); //1s delay between change of second choice
                     
@@ -96,9 +94,7 @@ void app1()
                     //  need to get out of loop and stop timer
                     if (inputChangeFlag)
                     {
-                        T2CONbits.TON = 0; // Stops T2 clock.
-                        T2flag = 10; //Clear T2flag 
-                        inputChangeFlag = 0;    //clear inputChangeflag
+                        stopTimerAndClearFlags();
                         break;
                     }
                 }
@@ -111,19 +107,42 @@ void app1()
                     time_seconds = 00;
                     break;
                 }
+                uint8_t stop = 0;   //flag to stop this operation
                 while(time_minutes > 0)
                 {
                     while(time_seconds > 0)
                     {
                         time_seconds--;
-                        Disp2String(time_minutes + ":" + time_seconds);
+                        Disp2String(time_minutes + ":" + time_seconds + '\n');
                         LED_SWITCH;
                         delay_ms(ONE_SEC);
+                        
+                        //if change in input, need to stop this operation
+                        if (inputChangeFlag)
+                        {
+                            stopTimerAndClearFlags();
+                            stop = 1;   //set stop flag
+                            break;
+                        }
                     }
+                    if (stop)
+                        break;
                     time_minutes--;
                     time_seconds = 59;
+                    Disp2String(time_minutes + ":" + time_seconds);
+                    LED_SWITCH;
+                    delay_ms(ONE_SEC);
+                    if (inputChangeFlag)
+                    {
+                        stopTimerAndClearFlags();
+                        stop = 1;   //set stop flag
+                        break;
+                    }
                 }
+                if (stop)
+                    break;
                 LED_ON;
+                Disp2String(" -- ALARM\n");
                 delay_ms(THREE_SEC);
                 break;
             
@@ -134,4 +153,12 @@ void app1()
             }
         }
     }
+}
+
+
+void stopTimerAndClearFlags()
+{
+    T2CONbits.TON = 0; // Stops T2 clock.
+    T2flag = 0; //Clear T2flag 
+    inputChangeFlag = 0;    //clear inputChangeflag
 }
