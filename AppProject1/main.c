@@ -19,7 +19,9 @@
 #pragma config FWDTEN = OFF  // WDT is off
 #pragma config WINDIS = OFF  // STANDARD WDT/. Applicable if WDT is on
 #pragma config FWPSA  = PR32 // WDT is selected uses prescaler of 32
-#pragma config WDTPS  = PS1  // WDT postscler is 1 if WDT selected
+#pragma config WDTPS  = PS4096  // WDT postscler is 4096 if WDT selected
+//Combined result is whenever SWDTEN bit is 1, WDT ~4s enabled.
+
 
 //MCLR/RA5 CONTROL
 #pragma config MCLRE = OFF // RA5 pin configured as input, MCLR reset on RA5 diabled
