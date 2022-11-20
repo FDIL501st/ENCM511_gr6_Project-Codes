@@ -8,6 +8,7 @@
 #include "longpress.h"
 
 extern uint8_t inputChangeFlag; // Extern global var.
+extern uint8_t T2flag;
 
 void app1();
 // PROMISES:

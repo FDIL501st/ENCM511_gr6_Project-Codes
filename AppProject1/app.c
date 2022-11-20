@@ -58,6 +58,16 @@ void app1()
                     Disp2String(time_minutes + ":" + time_seconds);
 
                     delay_ms(ONE_SEC); //1s delay between change of minute choice
+                    
+                    //if change input detected(eg// stop pressing button),
+                    //  need to get out of loop and stop timer
+                    if (inputChangeFlag)
+                    {
+                        T2CONbits.TON = 0; // Stops T2 clock.
+                        T2flag = 10; //Clear T2flag 
+                        inputChangeFlag = 0;    //clear inputChangeflag
+                        break;
+                    }
                 }
                 break;
 
@@ -81,6 +91,16 @@ void app1()
                     Disp2String(time_minutes + ":" + time_seconds);
 
                     delay_ms(ONE_SEC); //1s delay between change of second choice
+                    
+                    //if change input detected(eg// stop pressing button),
+                    //  need to get out of loop and stop timer
+                    if (inputChangeFlag)
+                    {
+                        T2CONbits.TON = 0; // Stops T2 clock.
+                        T2flag = 10; //Clear T2flag 
+                        inputChangeFlag = 0;    //clear inputChangeflag
+                        break;
+                    }
                 }
                 break;
 
