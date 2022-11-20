@@ -63,7 +63,9 @@ void app1()
                     //  need to get out of loop and stop timer
                     if (inputChangeFlag)
                     {
-                        stopTimerAndClearFlags();
+                        stopTimerAndClearFlag();
+                        // don't clear inputChangeFlag as need to 
+                        //check new input at beginning of app1()
                         break;
                     }
                 }
@@ -94,7 +96,9 @@ void app1()
                     //  need to get out of loop and stop timer
                     if (inputChangeFlag)
                     {
-                        stopTimerAndClearFlags();
+                        stopTimerAndClearFlag();
+                        // don't clear inputChangeFlag as need to 
+                        //check new input at beginning of app1()
                         break;
                     }
                 }
@@ -120,7 +124,9 @@ void app1()
                         //if change in input, need to stop this operation
                         if (inputChangeFlag)
                         {
-                            stopTimerAndClearFlags();
+                            stopTimerAndClearFlag();
+                            // don't clear inputChangeFlag as need to 
+                            //check new input at beginning of app1()
                             stop = 1;   //set stop flag
                             break;
                         }
@@ -134,7 +140,9 @@ void app1()
                     delay_ms(ONE_SEC);
                     if (inputChangeFlag)
                     {
-                        stopTimerAndClearFlags();
+                        stopTimerAndClearFlag();
+                        // don't clear inputChangeFlag as need to 
+                        //check new input at beginning of app1()
                         stop = 1;   //set stop flag
                         break;
                     }
@@ -156,9 +164,8 @@ void app1()
 }
 
 
-void stopTimerAndClearFlags()
+void stopTimerAndClearFlag()
 {
     T2CONbits.TON = 0; // Stops T2 clock.
     T2flag = 0; //Clear T2flag 
-    inputChangeFlag = 0;    //clear inputChangeflag
 }

@@ -15,9 +15,9 @@ void app1();
 // Read 3 bit input from the 3 input ports, RA2, RA4, RB4.
 // RA2 input adjust the timer time of minutes, RA4 adjust the timer time of seconds and RB4 either resets the timer or starts the timer
 
-void stopTimerAndClearFlags();
+void stopTimerAndClearFlag();
 // PROMISES:
-// Stops Timer2, and clears T2flag and inputChangeFlag.
+// Stops Timer2, and clears T2flag.
 
 #endif	/* APP_H */
 
