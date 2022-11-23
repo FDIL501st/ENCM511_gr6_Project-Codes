@@ -1,6 +1,7 @@
 from tkinter import Tk, StringVar
 from tkinter.ttk import Label, Button
 from functools import partial
+from lib.UART_Tx import TxChar
 
 class App():
     def __init__(self) -> None:
@@ -69,7 +70,9 @@ class App():
         """
         Updates the label to show the current selected configuration based off of charTx.
         """
+        # Base starting text of label text for most cases
         newLabelText: str = "Lighting Configuration Selected: Lights "
+
         char: str = self.charTx.get()
 
         if char == 'O':
@@ -93,8 +96,12 @@ class App():
         self.lightingCongifLabel.config(text=newLabelText)
 
     def Tx(self) -> None:
-        # This may actually be a function in a different file, and this just calls it and sends charTx as its argument
-        pass    # TODO - finish function to transmit charTx
+        """
+        Transmit charTx to USB port. This lets the char later be recieved.
+        """
+        char: str = self.charTx.get()
+        if char != '':
+            TxChar(char)
 
 if __name__ == "__main__":
     app = App()
