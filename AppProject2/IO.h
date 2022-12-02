@@ -6,9 +6,17 @@
 #include <xc.h>  // include processor files - each processor file is guarded.  
 
 // LED control macros. 
-#define LED_OFF      LATBbits.LATB8 = 0 
-#define LED_ON       LATBbits.LATB8 = 1 
-#define LED_SWITCH   LATBbits.LATB8 = ~LATBbits.LATB8;
+#define LED7_OFF      LATBbits.LATB7 = 0
+#define LED7_ON       LATBbits.LATB7 = 1
+#define LED7_SWITCH   LATBbits.LATB7 = ~LATBbits.LATB7
+
+#define LED8_OFF      LATBbits.LATB8 = 0 
+#define LED8_ON       LATBbits.LATB8 = 1 
+#define LED8_SWITCH   LATBbits.LATB8 = ~LATBbits.LATB8
+
+#define LED9_OFF      LATBbits.LATB9 = 0
+#define LED9_ON       LATBbits.LATB9 = 1
+#define LED9_SWITCH   LATBbits.LATB9 = ~LATBbits.LATB9
 
 void IOinit();
 // PROMISES:
