@@ -44,13 +44,15 @@
 
 // Include files. 
 #include <p24F16KA101.h>
+#include "xc.h"
 #include "driver6.h"
+#include "ADC.h"
+#include "UART2.h"
 
 
 int main(void) 
 {
-	CLKinit(32); // Initialize the timer clock.
-    InitUART2(); // Initialize the UART bus.
+	InitUART2(); // Initialize the UART bus.
     ADC_init(); // Initialize ADC module
     
     // Run the driver
