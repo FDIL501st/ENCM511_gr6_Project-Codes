@@ -16,7 +16,7 @@
 #pragma config POSCMOD  = NONE   // Primary oscillator mode is disabled
 
 // WDT
-#pragma config FWDTEN = OFF  // WDT is off
+#pragma config FWDTEN = OFF  // WDT is off, use SWDTEN bit to turn DWT on
 #pragma config WINDIS = OFF  // STANDARD WDT/. Applicable if WDT is on
 #pragma config FWPSA  = PR32 // WDT is selected uses prescaler of 32
 #pragma config WDTPS  = PS4096  // WDT postscler is 4096 if WDT selected
@@ -27,8 +27,8 @@
 #pragma config MCLRE = OFF // RA5 pin configured as input, MCLR reset on RA5 diabled
 
 //BOR  - FPOR Register
-#pragma config BORV    = LPBOR // LPBOR value=2V is BOR enabled
-#pragma config BOREN   = BOR0  // BOR controlled using SBOREN bit
+#pragma config BORV    = V18    // V18 value=1.8V if BOR enabled
+#pragma config BOREN   = BOR3  // BOR controlled turned on by hardware
 #pragma config PWRTEN  = OFF   // Powerup timer disabled
 #pragma config I2C1SEL = PRI   // Default location for SCL1/SDA1 pin
 
@@ -52,14 +52,34 @@
 #include "cn_irq.h"
 #include "UART2.h"
 #include "app.h"
+#include "HLVD.h"
+
+extern ONE_SEC;
 
 int main(void) 
 {
-    CLKinit(32); // Initialize the timer clock.
-    InitUART2(); // Initialize the UART bus.
-    IOinit();    // Initialize RA2, RA4, RB4, and RB8 pins. 
-    CNinit();    // Initialize the input change notifications. 
-
+    if (RCONbits.POR)
+    {
+        RCONbits.POR = 0;   //clear POR flag
+        CLKinit(32); // Initialize the timer clock.
+        InitUART2(); // Initialize the UART bus.
+        IOinit();    // Initialize RA2, RA4, RB4, and RB8 pins. 
+        CNinit();    // Initialize the input change notifications. 
+        decideHLVD(3.1);    // set HLVD trip point
+    }
+    if (RCONbits.BOR)
+    {
+        RCONbits.BOR = 0;   //clear BOR flag
+        // blink all lights for a second to indicate a system restart
+        LED7_ON;
+        LED8_ON;
+        LED9_ON;
+        delay_ms(ONE_SEC);
+        LED7_OFF;
+        LED8_OFF;
+        LED9_OFF;
+    }
+    
     // Run the driver project 
     app2();
     

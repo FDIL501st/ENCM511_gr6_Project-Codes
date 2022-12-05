@@ -5,6 +5,7 @@
 #include "timer.h"
 #include "cn_irq.h"
 #include "UART2.h"
+#include "HLVD.h"
 
 extern uint8_t inputChangeFlag; // Extern global var.
 extern uint8_t T2flag;

@@ -14,7 +14,7 @@ char* pb23_pressed = "PB2 and PB3 are pressed\r\n"; // 8 bits * 4clkpbit * 25
 const uint16_t ONE_SEC = 1000;    // parameter for 1s delay
 const uint16_t TWO_SEC = 2000;    // parameter for 2s delay
 const uint16_t THREE_SEC = 3000;  // parameter for 3s delay
-
+    
 void app2() 
 {
     uint8_t input = 0;
@@ -51,6 +51,19 @@ void app2()
                 break;
             }
         }
+        // if reach here and inputChangeFlag is not set, put system to Idle
+        //  as if inputChangeFlag is not set, will end up back here.
+        // So save power instead of CPU just running entire time 
+        //  polling for that flag
+        if (!inputChangeFlag)
+            Idle();
+            // Question, will digital output still occur when in Idle()?
+            // Hopefully all Idle does not affect digital IO outputs
+        
+            //no WDT enabling as it is fine for system to stay in Idle if no changes to input
+            
+        // Sure, any interrupt can move us back to beginning of loop, not just CN interrupt
+        // however will still reduce CPU runtime overall
     }   
 }
 
