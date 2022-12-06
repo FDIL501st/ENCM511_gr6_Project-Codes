@@ -54,7 +54,7 @@
 #include "app.h"
 #include "HLVD.h"
 
-extern ONE_SEC;
+extern uint16_t ONE_SEC;
 
 int main(void) 
 {
