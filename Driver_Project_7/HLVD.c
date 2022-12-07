@@ -2,7 +2,7 @@
 #include "HLVD.h"
 
 //user-defined flag
-uint8_t HLVDflag;
+char HLVDflag;
 
 void HLVDinit(unsigned int hlvd)
 {

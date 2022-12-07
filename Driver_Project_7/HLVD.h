@@ -1,9 +1,6 @@
 #ifndef DRIVER_PROJECT_2_HLVD_H
 #define	DRIVER_PROJECT_2_HLVD_H
 
-//user-defined flag
-extern uint8_t HLVDflag;
-
 // HLVD Setup
 void HLVDinit(unsigned int hlvd);
 
