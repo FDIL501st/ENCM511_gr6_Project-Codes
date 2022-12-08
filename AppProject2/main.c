@@ -50,7 +50,7 @@
 #include "IO.h"
 #include "timer.h"
 #include "cn_irq.h"
-#include "UART2.h"
+#include "UART1.h"
 #include "app.h"
 #include "HLVD.h"
 
@@ -62,10 +62,10 @@ int main(void)
     {
         RCONbits.POR = 0;   //clear POR flag
         CLKinit(32); // Initialize the timer clock.
-        InitUART2(); // Initialize the UART bus.
+        InitUART1(); // Initialize the UART bus.
         IOinit();    // Initialize RA2, RA4, RB4, and RB8 pins. 
         CNinit();    // Initialize the input change notifications. 
-        decideHLVD(3.1);    // set HLVD trip point
+        decideHLVD(3.3);    // set HLVD trip point
     }
     if (RCONbits.BOR)
     {
